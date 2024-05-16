@@ -41,8 +41,7 @@ def finput(prompt='', fstr='%s', expand_fsp=None,
         if pattern in fsp:
             types.append(fsp[pattern])
     pure_input = input(prompt)
-    mobj = re.match(rstr, pure_input)
-    if mobj:
+    if mobj := re.match(rstr, pure_input):
         try:
             return tuple(typ(value) for value, typ in zip(mobj.groups(), types))
         except Exception as err:
